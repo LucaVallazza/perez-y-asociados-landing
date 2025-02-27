@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, CardContent, Chip, Button } from '@mui/material';
+import { Box, Typography, Grid, CardContent, Chip } from '@mui/material';
 import { StyledCard } from './common/StyledCard';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import GavelIcon from '@mui/icons-material/Gavel';

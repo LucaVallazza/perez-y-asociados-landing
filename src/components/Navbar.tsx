@@ -9,7 +9,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   transition: 'all 0.3s ease-in-out',
   '&.scrolled': {
     backgroundColor: theme.palette.primary.main,
-    boxShadow: theme?.shadows?.[4] || 'none'
+    boxShadow: (theme.shadows as unknown as string[])[1] || 'none'
   },
   '&.hidden': {
     transform: 'translateY(-100%)'
