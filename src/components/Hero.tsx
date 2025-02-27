@@ -31,7 +31,7 @@ const ContentWrapper = styled(motion.div)({
   zIndex: 2
 });
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)({
   borderRadius: '30px',
   padding: '12px 35px',
   fontSize: '1.1rem',
@@ -41,7 +41,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
     transform: 'translateY(-2px)',
     boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
   }
-}));
+});
 
 const Hero = () => {
   const theme = useTheme();

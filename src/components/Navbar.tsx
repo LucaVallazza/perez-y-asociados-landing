@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Button, Typography, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 import { styled } from '@mui/system';
 import { useState, useEffect } from 'react';
 
@@ -9,7 +9,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   transition: 'all 0.3s ease-in-out',
   '&.scrolled': {
     backgroundColor: theme.palette.primary.main,
-    boxShadow: theme.shadows[4]
+    boxShadow: theme?.shadows?.[4] || 'none'
   },
   '&.hidden': {
     transform: 'translateY(-100%)'

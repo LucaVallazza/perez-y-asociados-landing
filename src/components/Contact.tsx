@@ -70,7 +70,7 @@ const Contact = () => {
           <form onSubmit={formik.handleSubmit}>
             <TextField
               fullWidth
-              name="name"
+              id="name"
               label="Nombre"
               margin="normal"
               {...formik.getFieldProps('name')}
@@ -79,7 +79,6 @@ const Contact = () => {
             />
             <TextField
               fullWidth
-              name="email"
               label="Email"
               margin="normal"
               {...formik.getFieldProps('email')}
@@ -88,7 +87,6 @@ const Contact = () => {
             />
             <TextField
               fullWidth
-              name="message"
               label="Mensaje"
               multiline
               rows={4}

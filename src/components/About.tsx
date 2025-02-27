@@ -1,4 +1,5 @@
-import { Box, Typography, Grid, CardContent, Avatar, CardMedia } from '@mui/material';
+import { Box, Typography, Grid, CardContent, CardMedia } from '@mui/material';
+// Removed unused Avatar import
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import { StyledCard } from './common/StyledCard';
 import company1 from '../assets/company-1.jpg';

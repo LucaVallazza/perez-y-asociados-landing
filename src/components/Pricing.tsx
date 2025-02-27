@@ -82,7 +82,7 @@ const Pricing = () => {
               elevation={plan.isRecommended ? 12 : plan.isPremium ? 8 : 3}
               sx={{
                 ...(plan.isRecommended && {
-                  border: (theme) => `2px solid ${theme.palette.secondary.main}`,
+                  border: (theme: { palette: { secondary: { main: string } } }) => `2px solid ${theme.palette.secondary.main}`,
                   position: 'relative',
                   overflow: 'visible',
                   '&::before': {
@@ -91,7 +91,7 @@ const Pricing = () => {
                     top: '-12px',
                     right: '50%',
                     transform: 'translateX(50%)',
-                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    backgroundColor: (theme: { palette: { secondary: { main: string } } }) => theme.palette.secondary.main,
                     color: 'white',
                     padding: '4px 12px',
                     borderRadius: '12px',
