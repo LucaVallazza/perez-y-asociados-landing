@@ -73,7 +73,7 @@ const Navbar = () => {
             }}
           >
             <LogoImage 
-              src="/src/assets/logo.jpg" 
+              src="src/assets/logo.jpg" 
               alt="Pérez & Asociados Logo"
             />
           </Box>
