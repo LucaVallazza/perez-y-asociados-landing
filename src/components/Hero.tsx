@@ -60,12 +60,18 @@ const Hero = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 2, 
+                mb: 4,
+                flexDirection: { xs: 'column', sm: 'row' } 
+              }}>
                 <BalanceIcon sx={{ 
-                  fontSize: '4rem', 
+                  fontSize: { xs: '3rem', sm: '4rem' },
                   color: theme.palette.secondary.main,
                 }} />
-                <Box>
+                <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
                   <Typography 
                     variant="h4"
                     sx={{
@@ -73,7 +79,8 @@ const Hero = () => {
                       letterSpacing: 3,
                       color: theme.palette.secondary.main,
                       lineHeight: 1,
-                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+                      fontSize: { xs: '1.75rem', sm: '2.125rem' }
                     }}
                   >
                     PÉREZ
@@ -84,7 +91,8 @@ const Hero = () => {
                       fontWeight: 400,
                       letterSpacing: 3,
                       opacity: 0.9,
-                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+                      fontSize: { xs: '0.875rem', sm: '1rem' }
                     }}
                   >
                     & ASOCIADOS
@@ -104,7 +112,9 @@ const Hero = () => {
                 sx={{
                   fontWeight: 700,
                   textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-                  mb: 3
+                  mb: 3,
+                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3.75rem' },
+                  textAlign: { xs: 'center', sm: 'left' }
                 }}
               >
                 Defendemos tus derechos con compromiso y experiencia
@@ -123,7 +133,9 @@ const Hero = () => {
                   fontWeight: 400,
                   textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
                   mb: 4,
-                  lineHeight: 1.6
+                  lineHeight: 1.6,
+                  fontSize: { xs: '1rem', sm: '1.25rem' },
+                  textAlign: { xs: 'center', sm: 'left' }
                 }}
               >
                 Más de 15 años brindando soluciones legales efectivas en derecho 
@@ -135,22 +147,34 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              >
-              <Box sx={{ display: 'flex', gap: 2 }}>
+            >
+              <Box sx={{ 
+                display: 'flex', 
+                gap: 2,
+                flexDirection: { xs: 'column', sm: 'row' },
+                alignItems: { xs: 'stretch', sm: 'flex-start' }
+              }}>
                 <StyledButton 
                   variant="contained" 
                   color="secondary" 
                   size="large"
-                  onClick={()=>{window.location.href='/#pricing'} }
-                  >
+                  onClick={()=>{window.location.href='/#pricing'}}
+                  fullWidth={true}
+                  sx={{ mb: { xs: 2, sm: 0 } }}
+                >
                   Consulta Gratuita
                 </StyledButton>
                 <StyledButton 
                   variant="outlined" 
                   color="inherit" 
                   size="large"
-                  onClick={()=>{window.location.href='/#about'} }
-                  sx={{ borderColor: 'white', color: 'white' }}
+                  onClick={()=>{window.location.href='/#about'}}
+                  sx={{ 
+                    borderColor: 'white', 
+                    color: 'white',
+                    flex: { xs: '1', sm: 'initial' }
+                  }}
+                  fullWidth={true}
                 >
                   Conoce más
                 </StyledButton>
