@@ -60,11 +60,37 @@ const Hero = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <BalanceIcon sx={{ 
-                fontSize: '4rem', 
-                color: theme.palette.secondary.main,
-                mb: 3 
-              }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
+                <BalanceIcon sx={{ 
+                  fontSize: '4rem', 
+                  color: theme.palette.secondary.main,
+                }} />
+                <Box>
+                  <Typography 
+                    variant="h4"
+                    sx={{
+                      fontWeight: 600,
+                      letterSpacing: 3,
+                      color: theme.palette.secondary.main,
+                      lineHeight: 1,
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+                    }}
+                  >
+                    PÉREZ
+                  </Typography>
+                  <Typography 
+                    variant="subtitle2"
+                    sx={{
+                      fontWeight: 400,
+                      letterSpacing: 3,
+                      opacity: 0.9,
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+                    }}
+                  >
+                    & ASOCIADOS
+                  </Typography>
+                </Box>
+              </Box>
             </motion.div>
 
             <motion.div
