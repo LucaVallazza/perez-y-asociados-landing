@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 import { styled } from '@mui/system';
 import { useState, useEffect } from 'react';
+import logoIcon from '../assets/logo.jpg';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -73,7 +74,7 @@ const Navbar = () => {
             }}
           >
             <LogoImage 
-              src="src/assets/logo.jpg" 
+              src={logoIcon} 
               alt="Pérez & Asociados Logo"
             />
           </Box>
