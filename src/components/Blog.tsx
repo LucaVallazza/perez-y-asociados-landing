@@ -108,7 +108,7 @@ const Blog = () => {
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
-                <Button size="small" color="primary">
+                <Button onClick={handleMoreArticlesClick} size="small" color="primary">
                   Leer más
                 </Button>
               </CardActions>
@@ -140,7 +140,7 @@ const Blog = () => {
           variant="filled"
           sx={{ width: '100%' }}
         >
-          Esta es una versión demo. Los artículos adicionales no están disponibles.
+          Esta es una versión demo. Los artículos no están disponibles.
         </Alert>
       </Snackbar>
     </Box>

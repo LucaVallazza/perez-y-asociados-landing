@@ -93,7 +93,7 @@ const About = () => {
       </Grid>
 
       {/* Testimonials Section */}
-      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 8, mb: 4 }}>
+      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 8, mb: 4, fontSize: { xs: '2rem', sm: '2.5rem', md: '3.75rem' },}}>
         Lo que dicen nuestros clientes
       </Typography>
       
