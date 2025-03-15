@@ -66,6 +66,7 @@ const Contact = () => {
         Contacto
       </Typography>
       <Grid container spacing={4}>
+        {/* Form Grid Item */}
         <Grid item xs={12} md={6}>
           <form onSubmit={formik.handleSubmit}>
             <TextField
@@ -135,6 +136,8 @@ const Contact = () => {
             </Button>
           </Box>
         </Grid>
+
+        {/* Contact Info Grid Item */}
         <Grid item xs={12} md={6}>
           <Typography variant="h6" gutterBottom>
             Información de contacto
@@ -164,6 +167,30 @@ const Contact = () => {
               </Box>
             ))}
           </Stack>
+
+          {/* Google Maps iframe */}
+          <Box
+            sx={{
+              mt: 4,
+              width: '100%',
+              height: '300px',
+              overflow: 'hidden',
+              borderRadius: 1,
+              '& iframe': {
+                border: 'none'
+              }
+            }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0010379771277!2d-58.385422824021454!3d-34.604203764990216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac3b4d9f37d%3A0xe77af860bf30a70!2sAv.%20Corrientes%201234%2C%20C1043AAZ%20CABA%2C%20Argentina!5e0!3m2!1ses!2sar!4v1710536144317!5m2!1ses!2sar"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación de la oficina"
+              aria-label="Mapa de Google mostrando la ubicación de nuestra oficina"
+            />
+          </Box>
         </Grid>
       </Grid>
       <Snackbar
