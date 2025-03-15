@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Box } from '@mui/material';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 interface SimpleCarouselProps {
   children: React.ReactNode[];
@@ -15,6 +15,69 @@ interface SimpleCarouselProps {
   autoplay?: boolean;
   autoplaySpeed?: number;
 }
+
+// Custom arrow components
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        position: 'absolute',
+        right: '-15px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'white',
+        borderRadius: '50%',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+        cursor: 'pointer',
+        zIndex: 2,
+        '&:hover': {
+          background: 'white',
+          boxShadow: '0 3px 8px rgba(0,0,0,0.3)',
+        }
+      }}
+    >
+      <ArrowForwardIosIcon sx={{ color: 'primary.main' }} />
+    </Box>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        position: 'absolute',
+        left: '-15px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'white',
+        borderRadius: '50%',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+        cursor: 'pointer',
+        zIndex: 2,
+        '&:hover': {
+          background: 'white',
+          boxShadow: '0 3px 8px rgba(0,0,0,0.3)',
+        }
+      }}
+    >
+      <ArrowBackIosNewIcon sx={{ color: 'primary.main' }} />
+    </Box>
+  );
+};
 
 const SimpleCarousel = ({ 
   children, 
@@ -57,6 +120,8 @@ const SimpleCarousel = ({
     autoplay: autoplay,
     autoplaySpeed: autoplaySpeed,
     adaptiveHeight: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1280,
@@ -83,12 +148,47 @@ const SimpleCarousel = ({
     <Box sx={{ 
       '.slick-slide': { 
         px: 1.5, 
-        pb: 1, // Add padding to bottom for drop shadow
+        pb: 1,
         height: 'inherit',
         '& > div': { height: '100%' }
       },
-      '.slick-track': { display: 'flex', alignItems: 'stretch' },
-      '.slick-dots': { bottom: -35 },
+      '.slick-track': { 
+        display: 'flex', 
+        alignItems: 'stretch' 
+      },
+      '.slick-dots': { 
+        bottom: -35,
+        margin: 0,
+        padding: 0,
+        listStyle: 'none',
+        display: 'flex !important',
+        justifyContent: 'center',
+        gap: 1,
+        'li': {
+          margin: 0,
+          padding: 0,
+          width: 'auto',
+          height: 'auto',
+          'button': {
+            padding: 0,
+            width: 8,
+            height: 8,
+            backgroundColor: 'grey.400',
+            border: 'none',
+            borderRadius: '50%',
+            fontSize: 0,
+            transition: 'all 0.2s ease',
+            cursor: 'pointer',
+            '&:before': {
+              display: 'none'
+            }
+          },
+          '&.slick-active button': {
+            backgroundColor: 'primary.main',
+            transform: 'scale(1.2)',
+          }
+        }
+      },
       '.slick-prev, .slick-next': {
         zIndex: 1,
         width: '30px',
@@ -100,9 +200,7 @@ const SimpleCarousel = ({
           background: 'white',
         },
         '&:before': {
-          color: '#1976d2', // Your primary color
-          fontSize: '20px',
-          opacity: 1,
+          display: 'none' // Hide default arrows
         }
       },
       '.slick-prev': { left: -15 },
