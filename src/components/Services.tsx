@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, CardContent, Button } from '@mui/material';
+import { Box, Typography, CardContent, Button } from '@mui/material';
 import GavelIcon from '@mui/icons-material/Gavel';
 import BusinessIcon from '@mui/icons-material/Business';
 import GroupIcon from '@mui/icons-material/Group';
@@ -6,6 +6,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import SecurityIcon from '@mui/icons-material/Security';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import { StyledCard } from './common/StyledCard';
+import SimpleCarousel from './common/CardCarousel';
 
 const PHONE_NUMBER = "541141406819"; // Formato: código de país (54) + número sin 0 ni 15
 
@@ -91,6 +92,75 @@ const Services = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  // Create service cards
+  const serviceCards = services.map((service, index) => (
+    <StyledCard key={index} elevation={3} sx={{ height: '100%' }}>
+      <CardContent sx={{ 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        p: 3 
+      }}>
+        <Box sx={{ 
+          mb: 2,
+          color: 'primary.main',
+          transform: 'scale(1.2)'
+        }}>
+          {service.icon}
+        </Box>
+        <Typography variant="h5" gutterBottom align="center">
+          {service.title}
+        </Typography>
+        <Typography variant="body1" align="center" sx={{ mb: 2 }}>
+          {service.description}
+        </Typography>
+        <Box sx={{ 
+          width: '100%',
+          mt: 2,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          <ul style={{ 
+            listStyle: 'none',
+            padding: 0,
+            margin: '0 0 20px 0'
+          }}>
+            {service.details.map((detail, idx) => (
+              <li key={idx} style={{ 
+                marginBottom: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <Box 
+                  component="span" 
+                  sx={{ 
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: 'secondary.main'
+                  }} 
+                />
+                {detail}
+              </li>
+            ))}
+          </ul>
+          <Button 
+            variant="outlined" 
+            color="primary"
+            fullWidth
+            onClick={() => handleWhatsAppClick(service.whatsappMessage!)}
+          >
+            Consultar
+          </Button>
+        </Box>
+      </CardContent>
+    </StyledCard>
+  ));
+
   return (
     <Box>
       <Typography variant="h2" gutterBottom align="center">
@@ -100,77 +170,11 @@ const Services = () => {
         Brindamos asesoramiento legal integral en diversas áreas del derecho
       </Typography>
       
-      <Grid container spacing={4}>
-        {services.map((service, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <StyledCard elevation={3}>
-              <CardContent sx={{ 
-                height: '100%', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center',
-                p: 3 
-              }}>
-                <Box sx={{ 
-                  mb: 2,
-                  color: 'primary.main',
-                  transform: 'scale(1.2)'
-                }}>
-                  {service.icon}
-                </Box>
-                <Typography variant="h5" gutterBottom align="center">
-                  {service.title}
-                </Typography>
-                <Typography variant="body1" align="center" sx={{ mb: 2 }}>
-                  {service.description}
-                </Typography>
-                <Box sx={{ 
-                  width: '100%',
-                  mt: 2,
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                  <ul style={{ 
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: '0 0 20px 0'
-                  }}>
-                    {service.details.map((detail, idx) => (
-                      <li key={idx} style={{ 
-                        marginBottom: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                      }}>
-                        <Box 
-                          component="span" 
-                          sx={{ 
-                            width: '6px',
-                            height: '6px',
-                            borderRadius: '50%',
-                            backgroundColor: 'secondary.main'
-                          }} 
-                        />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    variant="outlined" 
-                    color="primary"
-                    fullWidth
-                    onClick={() => handleWhatsAppClick(service.whatsappMessage!)}
-                  >
-                    Consultar
-                  </Button>
-                </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
+      <SimpleCarousel 
+        slidesToShow={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+      >
+        {serviceCards}
+      </SimpleCarousel>
     </Box>
   );
 };

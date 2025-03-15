@@ -1,6 +1,7 @@
-import { Box, Typography, Grid, CardContent, CardMedia, CardActions, Button, Snackbar, Alert } from '@mui/material';
+import { Box, Typography, CardContent, CardMedia, CardActions, Button, Snackbar, Alert } from '@mui/material';
 import { StyledCard } from './common/StyledCard';
 import { useState } from 'react';
+import SimpleCarousel from './common/CardCarousel';
 import image1 from '../assets/blog-1.jpg';
 import image2 from '../assets/blog-2.jpg';
 import image3 from '../assets/blog-3.jpg';
@@ -37,6 +38,74 @@ const Blog = () => {
     setOpenSnackbar(false);
   };
 
+  // Create blog post cards
+  const blogPostCards = blogPosts.map((post, index) => (
+    <StyledCard key={index} sx={{ height: '100%' }}>
+      <Box sx={{ 
+        position: 'relative',
+        paddingTop: '56.25%', // Aspect ratio 16:9
+        width: '100%',
+        height: 0
+      }}>
+        <CardMedia
+          component="img"
+          image={post.image}
+          alt={post.title}
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      </Box>
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography 
+          variant="caption" 
+          color="text.secondary"
+          sx={{ mb: 1, display: 'block' }}
+        >
+          {post.date}
+        </Typography>
+        <Typography 
+          variant="h6" 
+          gutterBottom
+          sx={{ 
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            minHeight: '3.6em'
+          }}
+        >
+          {post.title}
+        </Typography>
+        <Typography 
+          variant="body2" 
+          color="text.secondary"
+          sx={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            minHeight: '4.5em'
+          }}
+        >
+          {post.description}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
+        <Button onClick={handleMoreArticlesClick} size="small" color="primary">
+          Leer más
+        </Button>
+      </CardActions>
+    </StyledCard>
+  ));
+
   return (
     <Box>
       <Typography variant="h2" align="center" gutterBottom>
@@ -46,76 +115,11 @@ const Blog = () => {
         Actualidad jurídica y consejos legales
       </Typography>
 
-      <Grid container spacing={4}>
-        {blogPosts.map((post, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <StyledCard>
-              <Box sx={{ 
-                position: 'relative',
-                paddingTop: '56.25%', // Aspect ratio 16:9
-                width: '100%',
-                height: 0
-              }}>
-                <CardMedia
-                  component="img"
-                  image={post.image}
-                  alt={post.title}
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                />
-              </Box>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography 
-                  variant="caption" 
-                  color="text.secondary"
-                  sx={{ mb: 1, display: 'block' }}
-                >
-                  {post.date}
-                </Typography>
-                <Typography 
-                  variant="h6" 
-                  gutterBottom
-                  sx={{ 
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    minHeight: '3.6em'
-                  }}
-                >
-                  {post.title}
-                </Typography>
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary"
-                  sx={{
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: 'vertical',
-                    minHeight: '4.5em'
-                  }}
-                >
-                  {post.description}
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
-                <Button onClick={handleMoreArticlesClick} size="small" color="primary">
-                  Leer más
-                </Button>
-              </CardActions>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
+      <SimpleCarousel 
+        slidesToShow={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+      >
+        {blogPostCards}
+      </SimpleCarousel>
       
       <Box sx={{ textAlign: 'center', mt: 4 }}>
         <Button 

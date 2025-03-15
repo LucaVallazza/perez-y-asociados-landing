@@ -1,7 +1,7 @@
-import { Box, Typography, Grid, CardContent, CardMedia } from '@mui/material';
-// Removed unused Avatar import
+import { Box, Typography, CardContent, CardMedia } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import { StyledCard } from './common/StyledCard';
+import SimpleCarousel from './common/CardCarousel';
 import company1 from '../assets/company-1.jpg';
 import company2 from '../assets/company-2.jpg';
 import company3 from '../assets/company-3.jpg';
@@ -40,6 +40,59 @@ const About = () => {
     }
   ];
 
+  // Create company image cards
+  const companyImageCards = companyImages.map((image, index) => (
+    <StyledCard key={index} sx={{ height: '100%' }}>
+      <Box sx={{ 
+        position: 'relative',
+        paddingTop: '56.25%', // 16:9 aspect ratio
+        width: '100%',
+        height: 0
+      }}>
+        <CardMedia
+          component="img"
+          image={image.src}
+          alt={image.alt}
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      </Box>
+      <CardContent>
+        <Typography 
+          variant="h6" 
+          align="center"
+          sx={{ 
+            fontWeight: 600,
+            color: 'primary.main'
+          }}
+        >
+          {image.caption}
+        </Typography>
+      </CardContent>
+    </StyledCard>
+  ));
+
+  // Create testimonial cards
+  const testimonialCards = testimonials.map((testimonial, index) => (
+    <StyledCard key={index} elevation={3} sx={{ height: '100%' }}>
+      <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <FormatQuoteIcon color="primary" fontSize="large" sx={{ mb: 2 }} />
+        <Typography variant="body1" paragraph sx={{ flex: 1 }}>
+          {testimonial.text}
+        </Typography>
+        <Typography variant="subtitle2" color="textSecondary">
+          - {testimonial.author}
+        </Typography>
+      </CardContent>
+    </StyledCard>
+  ));
+
   return (
     <Box>
       <Typography variant="h2" gutterBottom align="center">
@@ -50,70 +103,26 @@ const About = () => {
         con el objetivo de ofrecer asesoramiento legal integral a individuos y empresas.
       </Typography>
 
-      {/* Company Images Section */}
-      <Grid container spacing={4} sx={{ my: 6 }}>
-        {companyImages.map((image, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <StyledCard sx={{ transform: 'none !important' }}> {/* Prevent hover effects */}
-              <Box sx={{ 
-                position: 'relative',
-                paddingTop: '56.25%', // 16:9 aspect ratio
-                width: '100%',
-                height: 0
-              }}>
-                <CardMedia
-                  component="img"
-                  image={image.src}
-                  alt={image.alt}
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                />
-              </Box>
-              <CardContent>
-                <Typography 
-                  variant="h6" 
-                  align="center"
-                  sx={{ 
-                    fontWeight: 600,
-                    color: 'primary.main'
-                  }}
-                >
-                  {image.caption}
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
+      {/* Company Images Section with Simple Carousel */}
+      <Box sx={{ my: 6 }}>
+        <SimpleCarousel 
+          slidesToShow={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+        >
+          {companyImageCards}
+        </SimpleCarousel>
+      </Box>
 
-      {/* Testimonials Section */}
-      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 8, mb: 4, fontSize: { xs: '2rem', sm: '2.5rem', md: '3.75rem' },}}>
+      {/* Testimonials Section with Simple Carousel */}
+      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 8, mb: 4, fontSize: { xs: '2rem', sm: '2.5rem', md: '3.75rem' } }}>
         Lo que dicen nuestros clientes
       </Typography>
       
-      <Grid container spacing={4} sx={{ mt: 4 }}>
-        {testimonials.map((testimonial, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <StyledCard elevation={3}>
-              <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <FormatQuoteIcon color="primary" fontSize="large" sx={{ mb: 2 }} />
-                <Typography variant="body1" paragraph sx={{ flex: 1 }}>
-                  {testimonial.text}
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  - {testimonial.author}
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
+      <SimpleCarousel 
+        slidesToShow={{ xs: 1, sm: 1, md: 2, lg: 3 }}
+        autoplay={true}
+      >
+        {testimonialCards}
+      </SimpleCarousel>
     </Box>
   );
 };

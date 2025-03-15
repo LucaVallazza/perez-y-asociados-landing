@@ -1,3 +1,42 @@
 html{
     scroll-behavior: smooth;
 }
+
+/* Custom styles for Swiper */
+:root {
+    --swiper-theme-color: #1976d2; /* Match your primary color */
+    --swiper-navigation-size: 24px;
+  }
+  
+  .swiper-button-next, .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: var(--swiper-theme-color) !important;
+  }
+  
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 0.6;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: var(--swiper-theme-color);
+  }
+  
+  .swiper {
+    padding-bottom: 40px !important;
+  }
+  
+  .swiper-pagination {
+    bottom: 0 !important;
+  }

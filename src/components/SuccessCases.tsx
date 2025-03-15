@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, CardContent, Chip } from '@mui/material';
+import { Box, Typography, CardContent, Chip } from '@mui/material';
 import { StyledCard } from './common/StyledCard';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -7,6 +7,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import BusinessIcon from '@mui/icons-material/Business';
 import FamilyHomeIcon from '@mui/icons-material/Home';
 import SecurityIcon from '@mui/icons-material/Security';
+import SimpleCarousel from './common/CardCarousel';
 
 const cases = [
   {
@@ -66,6 +67,69 @@ const cases = [
 ];
 
 const SuccessCases = () => {
+  // Create case cards
+  const caseCards = cases.map((case_, index) => (
+    <StyledCard key={index} elevation={3} sx={{ height: '100%' }}>
+      <CardContent sx={{ 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        p: 3 
+      }}>
+        <Box sx={{ 
+          mb: 2,
+          color: 'primary.main',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1
+        }}>
+          {case_.icon}
+          <Chip 
+            label={case_.area} 
+            size="small" 
+            color="primary" 
+            variant="outlined"
+          />
+        </Box>
+        <Typography variant="h5" gutterBottom>
+          {case_.title}
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, flex: 1 }}>
+          {case_.description}
+        </Typography>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 1,
+          flexWrap: 'wrap',
+          mb: 2
+        }}>
+          <Chip 
+            label={`Duración: ${case_.tiempo}`} 
+            size="small" 
+            variant="outlined"
+          />
+          <Chip 
+            label={`Compensación: ${case_.compensacion}`} 
+            size="small" 
+            variant="outlined"
+          />
+        </Box>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          gap: 1,
+          color: 'success.main',
+          mb: 2
+        }}>
+          <CheckCircleIcon />
+          <Typography variant="subtitle1" color="success.main">
+            {case_.result}
+          </Typography>
+        </Box>
+      </CardContent>
+    </StyledCard>
+  ));
+
   return (
     <Box>
       <Typography variant="h2" gutterBottom align="center">
@@ -75,79 +139,11 @@ const SuccessCases = () => {
         Nuestra trayectoria respaldada por resultados concretos
       </Typography>
 
-      <Grid container spacing={4}>
-        {cases.map((case_, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <StyledCard elevation={3}>
-              <CardContent sx={{ 
-                height: '100%', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                p: 3 
-              }}>
-                <Box sx={{ 
-                  mb: 2,
-                  color: 'primary.main',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}>
-                  {case_.icon}
-                  <Chip 
-                    label={case_.area} 
-                    size="small" 
-                    color="primary" 
-                    variant="outlined"
-                  />
-                </Box>
-                <Typography variant="h5" gutterBottom>
-                  {case_.title}
-                </Typography>
-                <Typography variant="body2" sx={{ mb: 2, flex: 1 }}>
-                  {case_.description}
-                </Typography>
-                <Box sx={{ 
-                  display: 'flex', 
-                  gap: 1,
-                  flexWrap: 'wrap',
-                  mb: 2
-                }}>
-                  <Chip 
-                    label={`Duración: ${case_.tiempo}`} 
-                    size="small" 
-                    variant="outlined"
-                  />
-                  <Chip 
-                    label={`Compensación: ${case_.compensacion}`} 
-                    size="small" 
-                    variant="outlined"
-                  />
-                </Box>
-                <Box sx={{ 
-                  display: 'flex', 
-                  alignItems: 'center',
-                  gap: 1,
-                  color: 'success.main',
-                  mb: 2
-                }}>
-                  <CheckCircleIcon />
-                  <Typography variant="subtitle1" color="success.main">
-                    {case_.result}
-                  </Typography>
-                </Box>
-                {/* <Button 
-                  variant="outlined" 
-                  color="primary" 
-                  fullWidth
-                  size="small"
-                >
-                  Ver más detalles
-                </Button> */}
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
+      <SimpleCarousel 
+        slidesToShow={{ xs: 1, sm: 2, md: 3, lg: 3 }}
+      >
+        {caseCards}
+      </SimpleCarousel>
     </Box>
   );
 };
