@@ -158,7 +158,7 @@ const Hero = () => {
                   variant="contained" 
                   color="secondary" 
                   size="large"
-                  onClick={()=>{window.location.href='/#pricing'}}
+                  onClick={() => {window.location.href='/#contact'}}
                   fullWidth={true}
                   sx={{ mb: { xs: 2, sm: 0 } }}
                 >
@@ -168,7 +168,7 @@ const Hero = () => {
                   variant="outlined" 
                   color="inherit" 
                   size="large"
-                  onClick={()=>{window.location.href='/#about'}}
+                  onClick={() => {window.location.href='/#services'}}
                   sx={{ 
                     borderColor: 'white', 
                     color: 'white',
