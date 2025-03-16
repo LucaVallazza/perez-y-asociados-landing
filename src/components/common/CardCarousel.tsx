@@ -203,6 +203,7 @@ const SimpleCarousel = ({
           display: 'none' // Hide default arrows
         }
       },
+      '.slick-list' : {overflow: 'hidden'},
       '.slick-prev': { left: -15 },
       '.slick-next': { right: -15 },
       position: 'relative',
